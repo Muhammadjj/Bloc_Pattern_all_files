@@ -69,7 +69,7 @@ class LandingPageBloc extends StatelessWidget {
             currentIndex: state.tabIndex,
             onTap: (index) {
               BlocProvider.of<LandingPageBottomNavigationBloc>(context)
-                  .add(TabChange(tabIndex: index));
+                  .add(TabChangeEvent(tabIndex: index));
             },
           ),
           body: listOfData[state.tabIndex],

@@ -6,8 +6,8 @@ sealed class LandingPageBottomNavigationEvent {
   const LandingPageBottomNavigationEvent({required this.tabIndex});
 }
 
-class TabChange extends LandingPageBottomNavigationEvent {
-  const TabChange({required super.tabIndex});
+class TabChangeEvent extends LandingPageBottomNavigationEvent {
+  const TabChangeEvent({required super.tabIndex});
 
   // final int tabIndex;
   // TabChange({required this.tabIndex});

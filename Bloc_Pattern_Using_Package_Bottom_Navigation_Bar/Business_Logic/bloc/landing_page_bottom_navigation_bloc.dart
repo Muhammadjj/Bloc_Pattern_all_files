@@ -12,7 +12,7 @@ class LandingPageBottomNavigationBloc extends Bloc<
       : super(const LandingPageBottomNavigationInitial(tabIndex: 0)) {
     on<LandingPageBottomNavigationEvent>((event, emit) {
       // ! Change Indexes .
-      if (event is TabChange) {
+      if (event is TabChangeEvent) {
         emit(LandingPageBottomNavigationInitial(tabIndex: event.tabIndex));
       }
     });
