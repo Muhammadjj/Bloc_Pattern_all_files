@@ -5,7 +5,7 @@ abstract class SignInEvents {}
 ///* q ka phle bt hm (SignIn) ka page bna raha ha js ma hmy Email aur Password ki
 ///* textField chaye hote ha ab hm Events ma jo bhi data bhja da wohe data return
 ///* (states) ki sorat ma maly ga ab hm na email aur password ko events ka zrya
-///* bhjna ha ka jo bhi text as ma veiw ho ga ays pr hm (Validation) lga skty ha
+///* bhjna ha ka jo bhi text as ma view ho ga ays pr hm (Validation) lga skty ha
 ///* aur events ko apny bloc ma bhj skty ha js pr hmy different (states) mil skte ha
 ///* aur an states ko hm apne mrzi sa design kr ka (UIs) pr show krwa skty ha
 class SignInTextChangeEvents extends SignInEvents {

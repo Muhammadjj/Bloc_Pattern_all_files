@@ -31,12 +31,12 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("object");
+    debugPrint("object");
     return Scaffold(
       appBar: AppBar(),
       body: Center(
         child: StreamBuilder<CounterState>(
-          initialData: CounterState(0),
+          initialData: CounterState(count: 0),
           stream: _counterBloc.stateStream,
           builder: (context, AsyncSnapshot<CounterState> snapshot) {
             return Text("Counter Value is ${snapshot.data!.count}");

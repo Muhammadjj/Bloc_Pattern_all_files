@@ -18,8 +18,7 @@ class SignInMaterialPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.cyan),
       home: BlocProvider<SignInBloc>(
-        create: (context) => SignInBloc(),
-        child: const SignInMainPage()),
+          create: (context) => SignInBloc(), child: const SignInMainPage()),
     );
   }
 }
@@ -32,7 +31,6 @@ class SignInMainPage extends StatefulWidget {
 }
 
 class _SignInMainPageState extends State<SignInMainPage> {
-
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -45,68 +43,84 @@ class _SignInMainPageState extends State<SignInMainPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("object");
+    debugPrint("object");
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: ListView(
-          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
           children: [
-            BlocBuilder<SignInBloc,SignInStates>(
+            BlocBuilder<SignInBloc, SignInStates>(
               builder: (context, state) {
                 if (state is SignInErrorStates) {
-                return  Text(state.errorMessage,
-                style: const TextStyle(color: Colors.red,fontSize: 17),);
+                  return Text(
+                    state.errorMessage,
+                    style: const TextStyle(color: Colors.red, fontSize: 17),
+                  );
+                } else {
+                  return const SizedBox(
+                    height: 0,
+                  );
                 }
-                else{
-                  return const SizedBox(height: 0,);
-                }
-              }, 
+              },
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             TextField(
               controller: email,
               onChanged: (value) {
-                BlocProvider.of<SignInBloc>(context,listen: false).add(SignInTextChangeEvents(
-                emailValue: email.text,passwordValue: password.text
-                ));
+                BlocProvider.of<SignInBloc>(context, listen: false).add(
+                    SignInTextChangeEvents(
+                        emailValue: email.text, passwordValue: password.text));
               },
               decoration: InputDecoration(
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                  hintText: "Enter Email",),),
-            const SizedBox(height: 20,),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                hintText: "Enter Email",
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             TextField(
               controller: password,
               onChanged: (value) {
-                BlocProvider.of<SignInBloc>(context,listen: false).add(SignInTextChangeEvents(
-                  emailValue: email.text,passwordValue: password.text
-                ));
+                BlocProvider.of<SignInBloc>(context, listen: false).add(
+                    SignInTextChangeEvents(
+                        emailValue: email.text, passwordValue: password.text));
               },
               decoration: InputDecoration(
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                  hintText: "Enter Password",),),
-
-            const SizedBox(height: 20,),
-
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                hintText: "Enter Password",
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             BlocBuilder<SignInBloc, SignInStates>(
               builder: (context, state) {
                 if (state is SignInLoadingStates) {
                   return const CircularProgressIndicator();
-                }  
-                 
-                return CupertinoButton(onPressed: (){
-                if (state is SignInValidStates) {
-                   BlocProvider.of<SignInBloc>(context,listen: false).add(SignInSubmittedButtonEvent(
-                  email: email.text,password: password.text ));
                 }
-            },
-            color:(state is SignInValidStates)? Colors.green:Colors.grey,
-            child:const Text("Sign In "),);
+
+                return CupertinoButton(
+                  onPressed: () {
+                    if (state is SignInValidStates) {
+                      BlocProvider.of<SignInBloc>(context, listen: false).add(
+                          SignInSubmittedButtonEvent(
+                              email: email.text, password: password.text));
+                    }
+                  },
+                  color:
+                      (state is SignInValidStates) ? Colors.green : Colors.grey,
+                  child: const Text("Sign In "),
+                );
               },
             )
-
-
           ],
         ),
       ),

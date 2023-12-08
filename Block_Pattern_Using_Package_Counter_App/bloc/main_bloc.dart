@@ -24,7 +24,7 @@ class BlocPattern extends StatelessWidget {
 
 class BlocCounterApp extends StatefulWidget {
   const BlocCounterApp({super.key});
-  
+
   @override
   State<BlocCounterApp> createState() => _BlocCounterAppState();
 }
@@ -32,17 +32,20 @@ class BlocCounterApp extends StatefulWidget {
 class _BlocCounterAppState extends State<BlocCounterApp> {
   @override
   Widget build(BuildContext context) {
-    print("Block Pattern With Package");
+    debugPrint("Block Pattern With Package");
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('You have pushed the button this many times:',),
+            const Text(
+              'You have pushed the button this many times:',
+            ),
             BlocBuilder<CounterBloc, CounterState>(
               bloc: context.read<CounterBloc>(),
               builder: (context, state) {
-                return Text( "${state.count}",
+                return Text(
+                  "${state.count}",
                   style: Theme.of(context).textTheme.headlineMedium,
                 );
               },
@@ -50,21 +53,20 @@ class _BlocCounterAppState extends State<BlocCounterApp> {
           ],
         ),
       ),
-      floatingActionButton: ButtonBar(
-        children: [
-          FloatingActionButton(
+      floatingActionButton: ButtonBar(children: [
+        FloatingActionButton(
           onPressed: () {
             _incrementedNumber();
           },
-          child:const Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
-
-        FloatingActionButton(onPressed: (){
-          context.read<CounterBloc>().add(DecrementCountEvent());
-        },
-        child:const Icon(Icons.remove_circle),)
-        ]
-      ),
+        FloatingActionButton(
+          onPressed: () {
+            context.read<CounterBloc>().add(DecrementCountEvent());
+          },
+          child: const Icon(Icons.remove_circle),
+        )
+      ]),
     );
   }
 

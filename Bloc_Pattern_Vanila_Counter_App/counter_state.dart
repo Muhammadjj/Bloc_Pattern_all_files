@@ -1,5 +1,5 @@
 class CounterState {
-  int count;
+  int? count;
 
-  CounterState(this.count);
+  CounterState({this.count});
 }
